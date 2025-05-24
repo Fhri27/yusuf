@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portofolio MUH. YUSUF</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: #f0f0f0;
+    line-height: 1.6;
+    padding-bottom: 50px;
+    overflow-x: hidden;
+    }
+
+    header {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 20px 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeIn 1.2s forwards;
+    }
+
+    header h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    }
+
+    header p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    }
+
+    nav a {
+    margin: 0 10px;
+    color: #00d4ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+    color: #fff;
+    }
+
+    section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    #about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    #about img {
+    border-radius: 50%;
+    width: 225px;
+    height: 225px;
+    object-fit: cover;
+    border: 4px solid #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+    transition: transform 0.3s ease;
+    }
+
+    #about img:hover {
+    transform: scale(1.05) rotate(3deg);
+    }
+
+    #about div {
+    max-width: 700px;
+    }
+
+    h2 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: #00d4ff;
+    }
+
+    #projects > h2,
+    #experience > h2,
+    #contact > h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    }
+
+    #projects-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    }
+
+    .project {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 0 1 calc(50% - 20px);
+    max-width: 48%;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .project.visible {
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    .project:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    .project img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+    }
+
+    .project img:hover {
+    transform: scale(1.05);
+    }
+
+    #experience {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    #experience.visible {
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    #experience p {
+    font-size: 1.1rem;
+    color: #f0f0f0;
+    max-width: 800px;
+    margin: 0 auto;
+    }
+
+    #contact {
+    text-align: center;
+    margin-top: 40px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    #contact.visible {
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    #contact .btn-contact {
+    display: inline-block;
+    margin: 10px 15px;
+    padding: 12px 25px;
+    background-color: #00d4ff;
+    color: #000;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+    min-width: 180px;
+    box-shadow: 0 2px 6px rgba(0,212,255,0.6);
+    cursor: pointer;
+    }
+
+    #contact .btn-contact:hover {
+    background-color: #00aacc;
+    transform: scale(1.05);
+    }
+
+    footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #bbb;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 1.2s forwards;
+    animation-delay: 1.5s;
+    }
+
+    @keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>MUH. YUSUF</h1>
+    <p>Mahasiswa | Desainer | Fotografer</p>
+    <nav>
+    <a href="#about">Profil</a>
+    <a href="#experience">Pengalaman</a>
+    <a href="#projects">Proyek</a>
+    <a href="#contact">Kontak</a>
+    </nav>
+</header>
+
+<section id="about" class="fade-section">
+    <img src="profile.png" alt="Foto MUH. YUSUF" />
+    <div>
+    <h2>Tentang Saya</h2>
+    <p>Nama saya <strong>MUH. YUSUF</strong>, biasa di panggil <strong>Ucup</strong>, saya seorang mahasiswa dari Universitas Tadulako, Fakultas Teknik, Prodi S1 SISTEM INFORMASI yang memiliki minat besar di dunia bisnis, analisis data, desain, fotografi, dan pengembangan web.</p>
+    </div>
+</section>
+
+<section id="experience" class="fade-section">
+    <h2>Pengalaman</h2>
+    <p>Desainer, Fotografer, Ojek Online, Koki, Event Festival Bahagian Temu Stage, dan Marketing (PKL saat SMK).</p>
+</section>
+
+<section id="projects" class="fade-section">
+    <h2>Proyek Saya</h2>
+    <div id="projects-wrapper">
+    <div class="project">
+        <img src="bakar.png" alt="Proyek 1" />
+        <h3>Desain Poster UMKM</h3>
+        <p>Membuat poster pedagang kaki lima yang jualan jagung bakar dengan slogan di bakar dengan cinta di nikmati dengan cerita</p>
+    </div>
+    <div class="project">
+        <img src="ffoto.png" alt="Proyek 2" />
+        <h3>Fotografer</h3>
+        <p>Menggunakan jasa sebagai foto grafer, kadang di indor juga outdoor</p>
+    </div>
+    <div class="project">
+        <img src="marketing.jpeg" alt="Proyek 3" />
+        <h3>Marketing</h3>
+        <p>Disini saya sebagai tim marketing di suatu CV di kota palu, selalu bekerja sama dalam tim, dan saling percaya satu sama lain.</p>
+    </div>
+    <div class="project">
+        <img src="temu.jpg" alt="Proyek 4" />
+        <h3>Temu Stage</h3>
+        <p>Disini saya bekerja sebagai Temu Stage di salah satu Event Festival yang sedang di selenggarakan di Kota Palu.</p>
+    </div>
+    </div>
+</section>
+
+<section id="contact" class="fade-section">
+    <h2>Hubungi Saya</h2>
+    <p>Silakan kirim pesan ke WhatsApp atau kunjungi Instagram saya:</p>
+    <a href="https://wa.me/6282259066199" target="_blank" class="btn-contact" aria-label="Kirim pesan via WhatsApp">Kirim Pesan via WhatsApp</a>
+    <a href="https://instagram.com/ysfmsr_3" target="_blank" class="btn-contact" aria-label="Kunjungi Instagram">Kunjungi Instagram</a>
+</section>
+
+<footer>
+    <p>&copy; 2025 MUH. YUSUF</p>
+</footer>
+
+<script>
+    // Scroll-triggered animations
+    function onScrollFadeIn() {
+    const sections = document.querySelectorAll('section.fade-section');
+    const projects = document.querySelectorAll('.project');
+    const windowBottom = window.innerHeight;
+
+    sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < windowBottom - 100) {
+        section.classList.add('visible');
+        }
+    });
+
+    projects.forEach(project => {
+        const top = project.getBoundingClientRect().top;
+        if (top < windowBottom - 80) {
+        project.classList.add('visible');
+        }
+    });
+    }
+
+    window.addEventListener('scroll', onScrollFadeIn);
+    window.addEventListener('load', () => {
+      // Trigger fade-in on load for visible sections
+    onScrollFadeIn();
+    });
+</script>
+</body>
+</html>
